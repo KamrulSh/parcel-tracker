@@ -11,14 +11,13 @@ const log = (msg) => console.log(msg);
 const uri = "mongodb://localhost:27017/parcelTracker";
 const options = {};
 const connectWithMongoDb = () => {
-    mongoose
-        .connect(uri)
-        .then(() => {
-            console.log("Database connected");
-        })
-        .catch((err) => {
+    mongoose.connect(uri, options, (err, db) => {
+        if (err) {
             console.error(err);
-        });
+        } else {
+            console.log("Database connected");
+        }
+    });
 };
 
 connectWithMongoDb();
